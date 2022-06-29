@@ -1,1 +1,2 @@
 .DS_Store
+**/pg_stat_tmp
