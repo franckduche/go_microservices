@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -24,6 +25,7 @@ func (app *Config) Authenticate(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
+		log.Println("invalid credentials", err)
 		return
 	}
 
@@ -31,8 +33,11 @@ func (app *Config) Authenticate(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil || !valid {
 		app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
+		log.Println("passwords did not match")
 		return
 	}
+
+	log.Println("Logged in user", user.Email)
 
 	payload := jsonResponse{
 		Error:   false,
