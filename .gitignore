@@ -1,3 +1,4 @@
 .DS_Store
 *.stat
-project/db-data/mongo/journal/*
+project/db-data/mongo/*
+project/db-data/postgres/*
