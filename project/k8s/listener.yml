@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: listerner-service
+  name: listener-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: listerner-service
+      app: listener-service
   template:
     metadata:
       labels:
-        app: listerner-service
+        app: listener-service
     spec:
       containers:
-        - name: listerner-service
+        - name: listener-service
           image: "franckduche2/listener-service:1.0.0"
           resources:
             requests:
@@ -22,13 +22,6 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-          env:
-            - name: MONGO_INITDB_DATABASE
-              value: "logs"
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: "admin"
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: "password"
           ports:
             - containerPort: 80
 
@@ -36,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: listerner-service
+  name: listener-service
 spec:
   selector:
-    app: listerner-service
+    app: listener-service
   ports:
     - protocol: TCP
       name: main-port
