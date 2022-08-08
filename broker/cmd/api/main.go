@@ -5,6 +5,7 @@ import (
 	"log"
 	"math"
 	"net/http"
+	"os"
 	"time"
 
 	amqp "github.com/rabbitmq/amqp091-go"
@@ -27,7 +28,7 @@ func main() {
 	defer rabbitCon.Close()
 
 	app := Config{
-		Rabbit: rabbitCon
+		Rabbit: rabbitCon,
 	}
 
 	log.Printf("Starting broker service on port %s\n", webPort)
